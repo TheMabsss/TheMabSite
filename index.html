@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Макет сайта</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Фоновое изображение -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('images/background.png'); /* путь к фону */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title"></h1>
+        <div class="content">
+            <div class="left-column">
+                <div class="item" data-image="images/photo1.jpg" data-link="https://www.youtube.com/@The_Mabs">
+                    <img src="images/photo1.jpg" alt="фото">
+                    <p>ОСНОВНОЙ КАНАЛ</p>
+                </div>
+                <div class="item" data-image="images/photo2.jpg" data-link="https://t.me/+BsHj0pk6ZQIxNWQ6">
+                    <img src="images/photo2.jpg" alt="фото">
+                    <p>ТЕЛЕГРАМ КАНАЛ</p>
+                </div>
+                <div class="item" data-image="images/photo3.jpg" data-link="https://www.twitch.tv/themabss">
+                    <img src="images/photo3.jpg" alt="фото">
+                    <p>ТВИЧ КАНАЛ</p>
+                </div>
+            </div>
+            <div class="right-column">
+                <img id="main-image" src="images/main-photo.png" alt="фото">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('.item');
+        const mainImage = document.getElementById('main-image');
+        const defaultImage = mainImage.src;
+
+        items.forEach(item => {
+            const hoverImage = item.dataset.image;
+            const link = item.dataset.link;
+
+            // При наведении — заменить основное фото
+            item.addEventListener('mouseenter', () => {
+                mainImage.src = hoverImage;
+            });
+
+            // При уходе курсора — вернуть стандартное фото
+            item.addEventListener('mouseleave', () => {
+                mainImage.src = defaultImage;
+            });
+
+            // При клике — переход по ссылке
+            item.addEventListener('click', () => {
+                window.open(link, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
